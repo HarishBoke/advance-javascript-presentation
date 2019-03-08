@@ -29,56 +29,71 @@
 						<h3>Advance Javascript... <br> ES Next Glimpse</h3>
 						<a href="https://www.linkedin.com/in/harishboke">by Harish Boke</a>
 				</section>
+				<!-- Agenda -->
 				<section name="1">
 						<h6 class="heading">Agenda</h6>	
 						<section name="1/0">
 								<ul class="list">
 										<li> <a href="#/2">How javascript works?</a>
 											<ul>
-												<li>The JavaScript Engine</li>											
-												<li> The Runtime</li>
-												<li>The Call Stack</li>
-												<li>The Call Stack Overflow</li>
+												<li><a href="#/2/0">The JavaScript Engine</a></li>											
+												<li><a href="#/2/1">The Runtime</a></li>
+												<li><a href="#/2/2">The Call Stack</a></li>
+												<li><a href="#/2/3">The Call Stack Overflow</a></li>
 											</ul>
 										</li>
-										<li><a href="#/3">JS compiled or interpreted ?</a>
+										<li><a href="#/3">JS compiled or interpreted ?</a></li>										
+										<li><a href="#/4">Scope</a></li>	
+										<li><a href="#/5">Hoisting</a></li>
+										<li><a href="#/6">Closure</a>
 											<ul>
-												<li>JIT</li>
-												<li>interpreted</li>
+												<li><a href="#/6/0">Traditional</a></li>
+												<li><a href="#/6/1">Higher Order</a></li>
+												<li><a href="#/6/2">Curry</a></li>
+												<li><a href="#/6/3">IFEE</a></li>
+												<li><a href="#/6/4">Loop + closure</a></li>
+												<li>Module Reveling pattern</li>
+												<li>Create your own jQuery</li>
+											</ul>
+											
+										</li>
+										<li><a href="#/7">this</a></li>
+										<li><a href="#/8">new</a></li>
+										<li><a href="#/9">Object</a>
+											<ul>
+													<li>Object Prototype</li>
+													<li>Prototype chain and behavior delegation</li>
 											</ul>
 										</li>										
-										<li><a href="#/4">Hoisting</a></li>	
-										<li><a href="#/5">Scope</a></li>
-									<li>Closure</li>
-									<li>Callback</li>
-									<li>Curry</li>
-									<li>IFEE</li>
-									<li>Module Reveling pattern</li>
-									<li>Create your own jQuery</li>
+										<li>Class in JavaScript?</li>
+										<li>ES6 <a href="https://codepen.io/harishboke/pen/BMJPvW">Exercise</a></li>
+										<!-- <li>Callback</li> -->
+										
+										
 								</ul>
 						</section>
-						<section name="1/2">
+						<!-- <section name="1/2">
 							<ul>
 							<li>Class in JavaScript?</li>
-							<li>Async Javascript
+							 <li>Async Javascript
 								<ul>
 									<li>setTimeout , XMLhttpRequest, fetch</li>
 									<li>Single threaded JS - Event loop (Web API)</li>
 									<li>For loop example with setTimeout</li>
 								</ul>
-							</li>
-							<li>Objects</li>
-							<li>Object Prototype</li>
-							<li>Prototype chain and behavior delegation</li>
-							<li>New</li>
-							<li>This</li>
-							<li>ES6 <a href="https://codepen.io/harishboke/pen/BMJPvW">Exercise</a></li>
+							</li> -->
+							
+							<!-- <li>New</li>
+							<li>This</li> 
+							
 						</ul>
-						</section>
+						</section> -->
 				</section>
+				<!-- Agenda -->
+
 				<section name="2">
 						<h6 class="heading">How javascript works?</h6>
-						<section name="3/0">
+						<section name="2/0">
 							<p class="sub-heading">The JavaScript Engine</p>
 							<div class="align-center">
 									<img src="assets/The-JavaScript-Engine.png" alt="The JavaScript Engine" class="demo-img" height="300">
@@ -92,32 +107,78 @@
 							</ul>
 							
 						</section>
-						<section name="3/0">
+						<section name="2/1">
 							<p class="sub-heading">The Runtime</p>
-							<div class="align-center">
-								<img src="assets/The-Runtime.png" alt="The Runtime" class="demo-img" height="300">
+							<pre>
+								<code>
+			function main(){
+				console.log('A');
+				setTimeout(
+					function display(){ console.log('B'); }
+				,0);
+					console.log('C');
+			}
+			main();
+			//	Output //	A	//	C  	//  B
+								</code>
+							</pre>
+							<div class="align-center fragment fade-up">
+								<img src="assets/stack-Inner-working-during-the-execution.png" alt="The Runtime" class="demo-img" height="300">
 							</div>
 						</section>
-						<section name="3/0">
+						
+						<section name="2/2">
 							<p class="sub-heading">The Call Stack</p>
-							<div class="align-center">
+							<div>
+									Call Stack is a data structure which records basically where in the program we are.
+							</div>
+							<pre>
+								<code>
+			function multiply(x, y) {
+				return x * y;
+			}
+			function printSquare(x) {
+				var s = multiply(x, x);
+				console.log(s);
+			}
+			printSquare(5);
+								</code>
+							</pre>
+							<div class="align-center fragment fade-up">
 								<img src="assets/The-Call-Stack.png" alt="The Call Stack"  class="demo-img" height="300">
 							</div>
 						</section>
-						<section name="3/0">
-							<p class="sub-heading">Stack Overflow</p>
-							<div class="align-center">
-									<img src="assets/The-Call-Stack-overflow-error.png" alt="The JavaScript Engine">
+						<section name="2/3">
+							<p class="sub-heading">The call Stack Overflow</p>
+							<pre>
+								<code>									
+		function callMyself(){
+			callMyself();
+		}
+		callMyself()
+								</code>
+							</pre>
+							<div class="align-center fragment fade-up current-visible">
+									<img src="assets/The-Call-Stack-overflow-error.png" alt="The call Stack Overflow">
 							</div>
-							<div class="align-center">								
-								<img class="fragment favicon" src="assets/The-Call-Stack-overflow.png" alt="The JavaScript Engine" class="demo-img" height="300">
+							<div class="align-center fragment fade-up" style="position: absolute;
+							top: 300px;
+							left: 20%;">								
+								<img src="assets/The-Call-Stack-overflow.png" alt="The JavaScript Engine" class="demo-img" height="300">
 							</div>
 						</section>
-					</section>
+						<section name="2/4">
+								<a href="#/2/1">then, we have the so popular event loop and the callback queue?</a>
+						</section>
+				</section>
+
 				<section name="3">
 					<h6 class="heading">JS compiled or interpreted ?</h6>
 
-					<section name="2/0">					
+					<section name="3/0">		
+							<div class="align-center">
+									<img src="assets/Interplay-between-Interpreter-and-Compiler.gif" alt="Interplay-between-Interpreter-and-Compiler.gif" height="300">
+							</div>			
 							<ul>
 								<li>JIT (just-in-time compiler) makes code optimizations (also create compiled versions); interpreted languages can never do that.</li>
 								<li class="fragment fade-up">If interpreted then how does hoisting takes place?</li>
@@ -127,37 +188,28 @@
 									<center>Confused... 😵</center>
 							</div>
 					</section>
-					<section name="2/1">
-
+					<section name="3/1">
+						<div class="align-center">
+								<img src="assets/js-engine-execution.png" alt="The Call Stack"  class="demo-img" height="300">
+						</div>
 						<ul>
-							<li>There are no static compilers for JavaScript apparently, The V8 "interpreter" compiles to native code internally</li>
-							<li>
-									JavaScript code needs a tool (JS engine) installed in your machine (node, browser) to get executed. This is what interpreted languages want. Compiled language products are free to be executed directly.
-							</li>
-							<li>
-									Hoisting etc are not like code modification. There is no intermediate code for that. It’s just the way JS interpreter handle things.
-							</li>
-							<li>
-									JIT is the only point which can raise questions on JavaScript being an interpreted language. But JIT is not a full fledged compiler, it also compiles just before the execution. And moreover JIT is introduced by Mozilla and Google people for performance benefits in their browsers. JavaScript or TC39 never asked to do that.
-							</li>
+							<li class="fragment fade-up">There are no static compilers for JavaScript apparently, The V8 "interpreter" compiles to native code internally</li>
+							<li class="fragment fade-up">JIT is the only point which can raise questions on JavaScript being an interpreted language. But JIT is not a full fledged compiler, it also compiles just before the execution. And moreover JIT is introduced by Mozilla and Google people for performance benefits in their browsers. JavaScript or TC39 never asked to do that.</li>
+							<li class="fragment fade-up">Hoisting etc are not like code modification. There is no intermediate code for that. It’s just the way JS interpreter handle things.</li>
+							<li class="fragment fade-up">Modern JavaScript engines combine the benefits of interpreter and compiler: Fast application startup and fast code execution.</li>
 						</ul>
-						
-						
-					</section>
-					<section name="2/3">
-						<img src="assets/Interplay-between-Interpreter-and-Compiler.gif" alt="Interplay-between-Interpreter-and-Compiler.gif">
 					</section>
 				</section>
 				
 				<section name="4">
-					<h6 class="heading">Hoisting</h6>
-					<section name="4/0">
-
-					</section>
-				</section>
-				<section name="5">
 					<h6 class="heading">Scope</h6>
-					<section name="5/0">
+					<section name="4/0">
+						<div class="align-center">
+								<img src="assets/scope-lookup.png" alt="Interplay-between-Interpreter-and-Compiler.gif" height="300">
+						</div>
+						<p>
+								another friend of Engine; collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.
+						</p>
 						<ul>	
 								<li>Functional</li>
 								<li>Global</li>
@@ -167,6 +219,275 @@
 					</section>
 				</section>
 				
+				<section name="5">
+						<h6 class="heading">Hoisting</h6>
+						<section name="5/0">
+							<p>JavaScript hoisting is a mechanism by which JavaScript “lifts” variables and function declarations to the top (of their scope).
+	
+									There are two types of hoisting: variable hoisting and function hoisting.
+									
+									</p>
+								<ul>
+									<!-- <li>In JavaScript, an undeclared variable is assigned the value undefined at execution and is also of type undefined</li>
+									<li>In JavaScript, a ReferenceError is thrown when trying to access a previously undeclared variable.</li> -->
+									<li>Variable</li>
+									<li>function statement / expression</li>
+									<li>Use Strict</li>
+									<li>ES Next (fat arrow, Let, const)</li>
+									<li>The Compiler Strikes Again - <br> the Engine actually will compile your JavaScript code before it interprets it. Part of the compilation phase was to find and associate all declarations with their appropriate scopes.</li>
+								</ul>
+						</section>
+	
+						<section name="5/1">
+							<p>Take Away</p>
+							<ul>
+								<li>Always declare variables regardless of whether they are in a function or global scope.</li>
+								<li>ES5 - use  "use strict" to avoid JS naunce </li>
+								<li>more ES6 syntax </li>
+							</ul>
+						</section>
+				</section>
+
+				<section name="6">
+					<h6 class="heading">Closure</h6>
+						<section name="6/0">
+							<p>
+									Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.
+							</p>
+							<p class="sub-heading">Traditional Closure</p>
+							<div>
+								<pre>
+										<code>
+					function foo() {
+						var a = 2;
+					
+						function bar() {
+							console.log( a );
+						}
+					
+						return bar;
+					}
+					
+					var baz = foo();
+					baz(); // 2 
+												
+										</code>
+								</pre>
+								
+							</div>							
+						</section>
+						<section name="6/1">
+							<p class="sub-heading">Closure With Higher Order </p>
+							<div>
+								<pre>
+										<code>
+					function foo() {
+						var a = 2;
+						function baz() {
+							console.log( a ); // 2
+						}
+					
+						bar( baz );
+					}					
+					function bar(fn) {
+						fn(); 
+					}
+										</code>
+								</pre>
+								
+							</div>							
+						</section>
+						<section name="6/2">
+							<p class="sub-heading">Closure With Curry</p>
+							<div>
+								<pre>
+										<code>
+					function foo(a) {
+						return function baz() {
+							console.log( a ); // 2
+						}
+					}
+					
+					foo(2)();
+										</code>
+								</pre>
+								
+							</div>							
+						</section>
+						<section name="6/3">
+							<p class="sub-heading">IFEE</p>
+							<div>
+								<pre>
+										<code>
+					var a = 2;
+
+					(function IIFE(){
+						console.log( a );
+					})();
+										</code>
+								</pre>
+								
+							</div>							
+						</section>
+						<section name="6/4">
+							<p class="sub-heading">Loop + closure</p>
+							<p>The most common canonical example used to illustrate closure involves the humble for-loop.</p>
+
+							<div class="fragment current-visible">								
+								<pre>
+										<code>
+							for (var i=1; i<=5; i++) {
+								setTimeout( function timer(){
+									console.log( i );
+								}, i*1000 );
+							}
+										</code>
+								</pre>
+								
+							</div>	
+							<div class="fragment current-visible" style="position: absolute; top:200px">								
+									<pre>
+											<code>
+				for (var i=1; i<=5; i++) {
+					setTimeout( function timer(){
+						console.log( i );
+					}, i*1000 );
+				}
+											</code>
+									</pre>
+									<em>Solved With IFEE</em>
+							</div>
+							<div class="fragment" style="position: absolute; top:200px">								
+									<pre>
+											<code>
+			for (var i=1; i<=5; i++) {
+				let j = i; // yay, block-scope for closure!
+				setTimeout( function timer(){
+					console.log( j );
+				}, j*1000 );
+			}
+											</code>
+									</pre>
+									<em>Solved With ES6 - Block Scoping Revisited</em>
+									<p>It essentially turns a block into a scope that we can close over. So, the following awesome code "just works":</p>
+							</div>						
+						</section>
+				</section>
+
+				<section name="7">
+						<h6 class="heading">This</h6>
+						<section name="7/0">
+							<pre>
+								<code>
+										function baz() {
+											// call-stack is: `baz`
+											// so, our call-site is in the global scope
+										
+											console.log( "baz" );
+											bar(); // <-- call-site for `bar`
+										}
+										
+										function bar() {
+											// call-stack is: `baz` -> `bar`
+											// so, our call-site is in `baz`
+										
+											console.log( "bar" );
+											foo(); // <-- call-site for `foo`
+										}
+										
+										function foo() {
+											// call-stack is: `baz` -> `bar` -> `foo`
+											// so, our call-site is in `bar`
+										
+											console.log( "foo" );
+										}
+										
+										baz(); // <-- call-site for `baz`
+								</code>
+							</pre>
+						</section>
+						<section name="7/1">
+							<ul>
+									<li>we can summarize the rules for determining this from a function call's call-site, in their order of precedence. Ask these questions in this order, and stop when the first rule applies.
+
+									Is the function called with new (new binding)? If so, this is the newly constructed object.
+									
+									var bar = new foo()
+									</li>
+									
+								<li>Is the function called with call or apply (explicit binding), even hidden inside a bind hard binding? If so, this is the explicitly specified object.
+									
+									var bar = foo.call( obj2 )</li>
+									
+								<li>	Is the function called with a context (implicit binding), otherwise known as an owning or containing object? If so, this is that context object.
+									
+									var bar = obj1.foo()</li>
+									
+								<li>Otherwise, default the this (default binding). If in strict mode, pick undefined, otherwise pick the global object.
+									
+									var bar = foo()</li>
+									
+									That's it. That's all it takes to understand the rules of this binding for normal function calls. Well... almost.
+									
+									
+							</ul>
+						</section>
+				</section>
+
+				<section name="8">
+						<h6 class="heading">New</h6>
+						<section name="8/0">
+							<pre>
+								<code>	
+						function foo(a) {
+							this.a = a;
+						}
+						
+						var bar = new foo( 2 );
+						console.log( bar.a ); // 2
+										
+								</code>
+							</pre>
+							<ul>
+								<li>a brand new object is created (aka, constructed) out of thin air</li>
+								<li>the newly constructed object is [[Prototype]]-linked</li>
+								<li>the newly constructed object is set as the this binding for that function call</li>
+								<li>unless the function returns its own alternate object, the new-invoked function call will automatically return the newly constructed object.</li>
+							</ul>
+						</section>
+				</section>
+
+				<section name="9">
+					<h6 class="heading">Object</h6>
+					<section name="9/0">
+						<em>DataType ?</em> <em>Constructor?</em>
+
+						<p>	everything is an Object in JS.</p>
+
+						<pre>
+							<code>
+					var myObject = {
+						a: 2
+					};
+					
+					Object.getOwnPropertyDescriptor( myObject, "a" );
+					// {
+					//    value: 2,
+					//    writable: true,
+					//    enumerable: true,
+					//    configurable: true
+					// }	
+							</code>
+						</pre>
+
+					</section>
+					<section name="9/1">
+						<p class="sub-heading">Object Prototype</p>
+						<div class="align-center" style="background: #ffffff;">
+							<img src="assets/prototype_chaining.png" alt="prototype_chaining">
+						</div>
+					</section>
+				</section>
 			</div>
 		</div>
 
