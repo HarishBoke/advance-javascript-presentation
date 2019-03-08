@@ -3,10 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<title>ADVANCE JAVASCRIPT... ES NEXT GLIMPSE
 				by Harish Boke</title>
-
+			<link rel="icon" type="image/png" href="assets/favicon.png">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
@@ -26,40 +25,37 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section name="0">
+				<section name="0" class="align-center">
 						<h3>Advance Javascript... <br> ES Next Glimpse</h3>
 						<a href="https://www.linkedin.com/in/harishboke">by Harish Boke</a>
 				</section>
 				<section name="1">
-						<h6>Agenda</h6>	
+						<h6 class="heading">Agenda</h6>	
 						<section name="1/0">
 								<ul class="list">
-										<li><a href="#/2">JS compiled or interpreted ?</a>
+										<li> <a href="#/2">How javascript works?</a>
 											<ul>
-												<li>JIT</li>
-												<li> How Engine works steps like (Parse and compile, compress)</li>
+												<li>The JavaScript Engine</li>											
+												<li> The Runtime</li>
+												<li>The Call Stack</li>
+												<li>The Call Stack Overflow</li>
 											</ul>
 										</li>
-										<li> <a href="#/3">How javascript works?</a>
-												<ul>
-													<li>JS engines</li>											
-													<li> How Engine works steps like (Parse and compile, compress)</li>
-												</ul>
-										</li>
-										<li><a href="#/4">Hoisting</a></li>
-										
-								</ul>
-						</section>
-						<section name="1/1">
-							<ul class="list">
-									<li><a href="#/5">Scope</a></li>
+										<li><a href="#/3">JS compiled or interpreted ?</a>
+											<ul>
+												<li>JIT</li>
+												<li>interpreted</li>
+											</ul>
+										</li>										
+										<li><a href="#/4">Hoisting</a></li>	
+										<li><a href="#/5">Scope</a></li>
 									<li>Closure</li>
 									<li>Callback</li>
 									<li>Curry</li>
 									<li>IFEE</li>
 									<li>Module Reveling pattern</li>
 									<li>Create your own jQuery</li>
-							</ul>
+								</ul>
 						</section>
 						<section name="1/2">
 							<ul>
@@ -81,35 +77,86 @@
 						</section>
 				</section>
 				<section name="2">
-					<h6>JS compiled or interpreted ?</h6>
-
-					<section name="2/0">
-							<strong>😵</strong>
-
+						<h6 class="heading">How javascript works?</h6>
+						<section name="3/0">
+							<p class="sub-heading">The JavaScript Engine</p>
+							<div class="align-center">
+									<img src="assets/The-JavaScript-Engine.png" alt="The JavaScript Engine" class="demo-img" height="300">
+							</div>
 							<ul>
-								<li class="fragment fade-up">If interpreted then how does hoisting takes place?</li>
-								<li class="fragment fade-up">JIT (just-in-time compiler) makes code optimizations (also create compiled versions); interpreted languages can never do that.</li>
+								<li>Compiles and executes JS code</li>
+								<li>Handling call stack — running your JS functions in some order</li>
+								<li>Managing memory allocation for objects — the memory heap</li>
+								<li>Garbage collection — of objects which are no longer in use</li>
+								<li>Provide all the data types, operators, objects and functions</li>
 							</ul>
+							
+						</section>
+						<section name="3/0">
+							<p class="sub-heading">The Runtime</p>
+							<div class="align-center">
+								<img src="assets/The-Runtime.png" alt="The Runtime" class="demo-img" height="300">
+							</div>
+						</section>
+						<section name="3/0">
+							<p class="sub-heading">The Call Stack</p>
+							<div class="align-center">
+								<img src="assets/The-Call-Stack.png" alt="The Call Stack"  class="demo-img" height="300">
+							</div>
+						</section>
+						<section name="3/0">
+							<p class="sub-heading">Stack Overflow</p>
+							<div class="align-center">
+									<img src="assets/The-Call-Stack-overflow-error.png" alt="The JavaScript Engine">
+							</div>
+							<div class="align-center">								
+								<img class="fragment favicon" src="assets/The-Call-Stack-overflow.png" alt="The JavaScript Engine" class="demo-img" height="300">
+							</div>
+						</section>
+					</section>
+				<section name="3">
+					<h6 class="heading">JS compiled or interpreted ?</h6>
+
+					<section name="2/0">					
+							<ul>
+								<li>JIT (just-in-time compiler) makes code optimizations (also create compiled versions); interpreted languages can never do that.</li>
+								<li class="fragment fade-up">If interpreted then how does hoisting takes place?</li>
+							</ul>
+							<br><br>
+							<div class="fragment fade-up">
+									<center>Confused... 😵</center>
+							</div>
 					</section>
 					<section name="2/1">
 
-					</section>
-					
-				</section>
-				<section name="3">
-					<h6>How javascript works?</h6>
-					<section name="3/0">
+						<ul>
+							<li>There are no static compilers for JavaScript apparently, The V8 "interpreter" compiles to native code internally</li>
+							<li>
+									JavaScript code needs a tool (JS engine) installed in your machine (node, browser) to get executed. This is what interpreted languages want. Compiled language products are free to be executed directly.
+							</li>
+							<li>
+									Hoisting etc are not like code modification. There is no intermediate code for that. It’s just the way JS interpreter handle things.
+							</li>
+							<li>
+									JIT is the only point which can raise questions on JavaScript being an interpreted language. But JIT is not a full fledged compiler, it also compiles just before the execution. And moreover JIT is introduced by Mozilla and Google people for performance benefits in their browsers. JavaScript or TC39 never asked to do that.
+							</li>
+						</ul>
+						
 						
 					</section>
+					<section name="2/3">
+						<img src="assets/Interplay-between-Interpreter-and-Compiler.gif" alt="Interplay-between-Interpreter-and-Compiler.gif">
+					</section>
 				</section>
+				
 				<section name="4">
-					<h6>Hoisting</h6>
+					<h6 class="heading">Hoisting</h6>
 					<section name="4/0">
 
 					</section>
 				</section>
 				<section name="5">
-					<h6>Scope</h6>
+					<h6 class="heading">Scope</h6>
 					<section name="5/0">
 						<ul>	
 								<li>Functional</li>
