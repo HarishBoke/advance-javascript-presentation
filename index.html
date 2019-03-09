@@ -36,7 +36,8 @@
 								<ul class="list">
 										<li> <a href="#/2">How javascript works?</a>
 											<ul>
-												<li><a href="#/2/0">The JavaScript Engine</a></li>											
+												<li><a href="#/2/0">Execution Context</a></li>
+												<li><a href="#/2/0">The JavaScript Engine</a></li>														
 												<li><a href="#/2/1">The Runtime</a></li>
 												<li><a href="#/2/2">The Call Stack</a></li>
 												<li><a href="#/2/3">The Call Stack Overflow</a></li>
@@ -52,8 +53,8 @@
 												<li><a href="#/6/2">Curry</a></li>
 												<li><a href="#/6/3">IFEE</a></li>
 												<li><a href="#/6/4">Loop + closure</a></li>
-												<li>Module Reveling pattern</li>
-												<li>Create your own jQuery</li>
+												<li><a href="#/6/5">Modules</a></li>
+												<li><a href="#/6/6">Create your own jQuery</a></li>
 											</ul>
 											
 										</li>
@@ -93,6 +94,12 @@
 
 				<section name="2">
 						<h6 class="heading">How javascript works?</h6>
+						<section>
+							<p class="sub-heading">Execution Context</p>
+							<div class="align-center">
+									<img src="assets/js-execution-context.png" alt="JS Execution Context" class="demo-img" height="300">
+							</div>
+						</section>
 						<section name="2/0">
 							<p class="sub-heading">The JavaScript Engine</p>
 							<div class="align-center">
@@ -372,6 +379,148 @@
 									<p>It essentially turns a block into a scope that we can close over. So, the following awesome code "just works":</p>
 							</div>						
 						</section>
+						<section name="6/5">
+							<p class="sub-heading">
+								Modules
+							</p>
+						
+							<section name="6/5/0">
+									
+								<div class="fragment current-visible">
+										<p> The code patterns which leverage the power of closure but which do not on the surface appear to be about callbacks. Let's examine the most powerful of them: the module.</p>
+										<p class="sub-heading">Module Reveling pattern</p>	
+									<pre>
+										<code>
+					var foo = (function CoolModule() {
+						var something = "cool";
+						var another = [1, 2, 3];
+					
+						function doSomething() {
+							console.log( something );
+						}
+					
+						function doAnother() {
+							console.log( another.join( " ! " ) );
+						}
+					
+						return {
+							doSomething: doSomething,
+							doAnother: doAnother
+						};
+					})();
+					
+					foo.doSomething(); // cool
+					foo.doAnother(); // 1 ! 2 ! 3
+										</code>
+									</pre>
+								</div>
+								<div class="fragment current-visible" style="position: absolute; top:170px;">
+									<p>Another slight but powerful variation on the module pattern is to name the object you are returning as your public API:
+										</p>
+									<pre>
+										<code>
+					var foo = (function CoolModule(id) {
+						function change() {
+							// modifying the public API
+							publicAPI.identify = identify2;
+						}
+					
+						function identify1() {
+							console.log( id );
+						}
+					
+						function identify2() {
+							console.log( id.toUpperCase() );
+						}
+					
+						var publicAPI = {
+							change: change,
+							identify: identify1
+						};
+					
+						return publicAPI;
+					})( "foo module" );
+					
+					foo.identify(); // foo module
+					foo.change();
+					foo.identify(); // FOO MODULE
+										</code>
+									</pre>
+								</div>
+								<div class="fragment current-visible" style="position: absolute; top:170px;">
+										<p> The code patterns which leverage the power of closure but which do not on the surface appear to be about callbacks. Let's examine the most powerful of them: the module.</p>
+								</div>
+								<div class="fragment current-visible" style="position: absolute; top:270px;">
+									<p>harishQuery like jQuery</p>
+										<pre>
+												<code>
+														var harishQuery = (function(selector){
+															var val = [1,2,3,4];
+														
+																var init = function(selector){
+																var elm = document.querySelector(selector);
+																//TODO: implement ready state
+																return publicAPI = {
+																	html: function(newValue){
+																		elm.innerHTML = newValue;
+																	},
+																	showalert: function(){
+																		alert('from show alert');
+																	}
+																	//TODO: add methods required 
+																	//addClass, remove class, display,  toggle, uppercase, lowercase
+																}
+															}
+															return init;
+														})();
+												</code>
+											</pre>	
+									</div>
+									<div class="fragment" style="position: absolute; top:270px;">
+										<p>implement harishQuery</p>
+											<pre>
+													<code>
+			
+												html
+														<head>
+															<title>
+																Consuming jQuery created by Harish
+															</title>
+															<script src="jQueryImplementation.js"></script>
+														</head>
+														<body>
+															<div id="demo">
+																	intit content
+															</div>
+															<script>
+																// add dom ready method here
+																console.log(harishQuery('#demo').html('harish'));
+															</script>
+														</body>
+													html
+													</code>
+											</pre>
+										</div>
+									
+							</section>
+
+						</section>
+						<!-- <section name="6/6">
+							<p class="sub-heading">
+								Create your own jQuery
+							</p>
+							
+							
+								<div class="fragment current-visible">
+										
+								</div>
+
+								<div class="fragment" style="position: absolute; top:270px;">
+										
+								</div>
+
+							
+						</section> -->
 				</section>
 
 				<section name="7">
